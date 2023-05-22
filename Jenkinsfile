@@ -1,3 +1,50 @@
+ 
+
+
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE users;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+GroovyScript: 
+
+import org.apache.commons.lang3.RandomStringUtils
+
+def firstName = RandomStringUtils.randomAlphabetic(6)
+def lastName = RandomStringUtils.randomAlphabetic(6)
+def username = firstName.toLowerCase()
+def password = RandomStringUtils.randomAlphanumeric(8)
+def email = firstName + '.' + lastName + '@gmail.com'
+
+def requestBody = sprintf('''
+{
+  "firstName": "%s",
+  "lastName": "%s",
+  "username": "%s",
+  "password": "%s",
+  "email": "%s"
+}
+''', firstName, lastName, username, password, email)
+return requestBody
+
+| 
+
+
+
+Script Assertion
+
+assert messageExchange.timeTaken < 900
+//get json response
+import groovy.json.JsonSlurper
+def responseMessage = messageExchange.response.responseContent
+def json = new JsonSlurper().parseText(responseMessage)
+
+//assert node values
+log.info json.success
+assert json.success.toString() != null
+assert json.message.toString() == "User registered successfully"
+
+
 
 pipeline {
     agent any
@@ -24,9 +71,11 @@ pipeline {
                 sh 'sleep 30'
             }
         }
-        stage('Test') {
+        stage('Load test') {
             steps {
-                sh 'mvn test'
+                // Run the SoapUI load test
+                bat ' loadtestrunner.bat -s"http://localhost:8081 TestSuite" -c"Signup TestCase" -l"LoadTest 2" -r -fC:\Users\Jose\Desktop "C:\Users\Jose\Downloads\Programacion\Codigos\SOAPUi y Jmeter\REST-Project-1-soapui-project.xml"'
+               //bat 'loadtestrunner.bat -s"http://localhost:8081 TestSuite" -c"Signup TestCase" -l"LoadTest 1" -m60 -n5 -r -f"C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi test" -R -J-Dsoapui.export.pdf="C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi_test/LoadTestReport.pdf" "C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi test/REST-Project-1-soapui-project.xml"'
             }
         }
         stage('Release the port 8081') {
@@ -42,8 +91,5 @@ pipeline {
         }
     }
 }
-
-
-
 
 
