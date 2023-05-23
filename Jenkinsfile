@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    parameters {
+        password(name: 'SPRING_DATASOURCE_PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+    }
 
     stages {
       //  stage('Build') {
