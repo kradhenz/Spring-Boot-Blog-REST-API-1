@@ -1,13 +1,13 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Build') {
-            steps {
+    //stages {
+      //  stage('Build') {
+        //    steps {
                 // Clean and install the project
-                sh 'mvn clean install'
-            }
-        }
+          //      sh 'mvn clean install'
+            //}
+        //}
         stage('Start API') {
             steps {
                 // Change directory to target
