@@ -37,17 +37,19 @@ pipeline {
                 bat 'jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx" -l ./target/Jmeter -e -o ./target/Jmeter'
             }   
         }
+        /*
         stage('Release the port 8081') {
-            steps {
-                echo "El puerto se cierra automáticamente"
-                 //bat 'for /f "tokens=5" %p in (\'netstat -ano ^| findstr :8081 ^| findstr LISTENING ^| findstr /r /c:" *[0-9]*$" \') do taskkill /f /pid %p > nul 2>&1'
+          steps {
+               echo "El puerto se cierra automáticamente"
+                 bat 'for /f "tokens=5" %p in (\'netstat -ano ^| findstr :8081 ^| findstr LISTENING ^| findstr /r /c:" *[0-9]*$" \') do taskkill /f /pid %p > nul 2>&1'
                 script {
-                     def pid = bat(returnStdout: true, script: 'netstat -ano | findstr :8081').split("\\s+")[4]
+                    def pid = bat(returnStdout: true, script: 'netstat -ano | findstr :8081').split("\\s+")[4]
                      bat "taskkill /pid ${pid} /f"
                     echo "El puerto 8081 ha sido liberado."
                  }                
             }
         }
+        */
         stage('Generate Performance Report') {
              steps {
                  perfReport filterRegex: '', showTrendGraphs: true, sourceDataFiles: './target/Jmeter'
