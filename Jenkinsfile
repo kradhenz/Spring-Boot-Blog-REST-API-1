@@ -63,7 +63,7 @@ pipeline {
                  dir('target/Jmeter'){
                  perfReport 'Result.csv'}
                  */
-                 perfReport:'src/main/resources/JMeter.jtl'
+                 perfReport'src/main/resources/JMeter.jtl'
               }
         }
     }
