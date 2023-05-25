@@ -52,7 +52,8 @@ pipeline {
         */
         stage('Generate Performance Report') {
              steps {
-                 perfReport filterRegex: '', showTrendGraphs: true, sourceDataFiles: '/target/Jmeter'
+                 dirget('target/Jmeter'){
+                 perfReport filterRegex: '', showTrendGraphs: true, sourceDataFiles: '.'}
               }
         }
     }
