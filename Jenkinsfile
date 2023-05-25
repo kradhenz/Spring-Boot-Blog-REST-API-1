@@ -36,7 +36,9 @@ pipeline {
                //bat 'loadtestrunner.bat -s"http://localhost:8081 TestSuite" -c"Signup TestCase" -l"LoadTest 1" -m60 -n5 -r -f"C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi test" -R -J-Dsoapui.export.pdf="C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi_test/LoadTestReport.pdf" "C:/Users/Jose/Downloads/Programación/Códigos/SOAPUi test/REST-Project-1-soapui-project.xml"'
                 //bat 'jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx" -l "C:/Users/Jose/Desktop/Ejemplo/Result.csv" -e -o "C:/Users/Jose/Desktop/Ejemplo"'
                 //bat 'mkdir .\\target\\Jmeter'
-                bat 'jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx" -l .\\target\\Jmeter -e -o .\\target\\Jmeter'
+               def jmeterOutputDir = "${env.WORKSPACE}\\target\\Jmeter"
+                bat "mkdir \"${jmeterOutputDir}\""
+                bat "jmeter -n -t \"C:/Users/Jose/Desktop/otra Peticion HTTP.jmx\" -l \"${jmeterOutputDir}\" -e -o \"${jmeterOutputDir}\""
             }   
         }
     /*    
