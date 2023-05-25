@@ -5,7 +5,7 @@ pipeline {
     parameters {
         password(name: 'SPRING_DATASOURCE_PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
-
+/*
     stages {
         
        stage('Build') {
@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        
+   */
         stage('Start API') {
             steps {
                 // Change directory to target
