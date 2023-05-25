@@ -53,7 +53,7 @@ pipeline {
         */
         stage('Generate Performance Report') {
              steps {
-                 dirget('target/Jmeter'){
+                 dir('target/Jmeter'){
                  perfReport filterRegex: '', showTrendGraphs: true, sourceDataFiles: '.'}
               }
         }
