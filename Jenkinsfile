@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+        /*
        stage('Build') {
           steps {
                 // Clean and install the project
@@ -37,7 +38,7 @@ pipeline {
                 bat 'jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx" -l ./target/Jmeter -e -o ./target/Jmeter'
             }   
         }
-        /*
+        
         stage('Release the port 8081') {
           steps {
                echo "El puerto se cierra automáticamente"
