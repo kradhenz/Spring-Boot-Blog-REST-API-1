@@ -54,7 +54,7 @@ pipeline {
         stage('Generate Performance Report') {
              steps {
                  dir('target/Jmeter'){
-                 perfReport filterRegex: '', showTrendGraphs: true, sourceDataFiles: '**/*.csv'}
+                 perfReport 'Result.csv'}
               }
         }
     }
