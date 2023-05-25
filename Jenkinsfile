@@ -38,8 +38,8 @@ pipeline {
                 //bat 'jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx" -l "C:/Users/Jose/Desktop/Ejemplo/Result.csv" -e -o "C:/Users/Jose/Desktop/Ejemplo"'
                 //bat 'mkdir .\\target\\Jmeter'
                
-                bat "mkdir \\${env.WORKSPACE}\\target\\Jmeter"
-                bat "jmeter -n -t \"C:/Users/Jose/Desktop/otra Peticion HTTP.jmx\" -l \\${env.WORKSPACE}\\target\\Jmeter -e -o \\${env.WORKSPACE}\\target\\Jmeter"
+                bat "mkdir ${env.WORKSPACE}\\target\\Jmeter"
+                bat "jmeter -n -t "C:/Users/Jose/Desktop/otra Peticion HTTP.jmx\" -l ${env.WORKSPACE}\\target\\Jmeter -e -o ${env.WORKSPACE}\\target\\Jmeter"
             }   
         }
     /*    
